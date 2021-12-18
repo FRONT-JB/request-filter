@@ -36,7 +36,7 @@ export interface FilterMaterial {
   label: FilterMaterialTypes;
 }
 
-export type FilterTypes = FilterMethodTypes & FilterMaterialTypes;
+export type FilterTypes = FilterMethodTypes | FilterMaterialTypes;
 
 /**
  * @description
