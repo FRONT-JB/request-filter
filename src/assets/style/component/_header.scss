@@ -1,0 +1,56 @@
+@use '../utils/variables' as var;
+@use '../utils/mixins' as mixin;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.55rem 4.9rem;
+  background: var.$blue-base;
+  &__logo a {
+    line-height: 1;
+    color: var.$white;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  &__utils {
+    display: flex;
+
+    .company-name {
+      position: relative;
+      padding: 0 3.5rem 0 3rem;
+      margin-right: 3.5rem;
+      background: url('../images/img_company.png') no-repeat 0 50%;
+      background-size: 21px;
+      color: var.$white;
+
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 2px;
+        height: 2rem;
+        background: var.$white;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  @include mixin.Tablet {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+
+  @include mixin.Mobile {
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+    &__logo a {
+      font-size: 1.4rem;
+    }
+    &__utils {
+      display: none;
+    }
+  }
+}

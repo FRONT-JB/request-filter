@@ -1,0 +1,42 @@
+@use '../utils/variables' as var;
+
+.btn-set {
+  display: flex;
+  align-items: center;
+
+  button[class^='btn']:not(:nth-of-type(1)) {
+    margin-left: 1rem;
+  }
+}
+
+button[class^='btn'] {
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  color: var.$blue-lighten-1;
+
+  &.btn-logout {
+    padding: 0;
+    color: var.$white;
+  }
+
+  &.btn-blue {
+    background-color: var.$blue-lighten-1;
+    border: 1px solid var.$blue-lighten-1;
+    color: var.$white;
+
+    &-border {
+      @extend .btn-blue;
+      background: var.$white;
+      border: 1px solid var.$blue-lighten-1;
+      color: var.$blue-lighten-1;
+    }
+  }
+
+  &.btn-reset {
+    padding-left: 2rem;
+    background: transparent url('../images/icon_refresh.svg') no-repeat 0 50%;
+    border: none;
+    font-size: 1.2rem;
+  }
+}

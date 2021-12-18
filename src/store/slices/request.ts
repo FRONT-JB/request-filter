@@ -1,16 +1,10 @@
+import { handleCheckbox } from './../../utils/index';
 import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
-import {
-  FilterMaterialTypes,
-  FilterMethodTypes,
-  RequestItem,
-  REQUEST_STATUS,
-} from '~/types/request';
+import { FilterTypes, RequestItem, REQUEST_STATUS } from '~/types/request';
 import { RootState } from '../reducer';
 
 const REQUEST_SLICE = 'REQUEST' as const;
-
-type FilterTypes = FilterMethodTypes | FilterMaterialTypes;
 
 interface RequestState {
   isLoading: boolean;
@@ -49,11 +43,23 @@ const requestSlice = createSlice({
     toggleOnGoing: (state) => {
       state.isOnGoing = !state.isOnGoing;
     },
+    setFilter: (state, { payload }: PayloadAction<FilterTypes[]>) => {
+      state.filter = payload;
+    },
+    resetFilter: (state) => {
+      state.filter = [];
+    },
   },
 });
 
-export const { toggleOnGoing, getRequest, getRequestSucess, getRequestError } =
-  requestSlice.actions;
+export const {
+  toggleOnGoing,
+  setFilter,
+  resetFilter,
+  getRequest,
+  getRequestSucess,
+  getRequestError,
+} = requestSlice.actions;
 
 export const requestSelector = (state: RootState) => state.request;
 
@@ -65,5 +71,9 @@ export const requestListSelector = createSelector(
       : filteredRequest;
   },
 );
+
+export const reqeustLoadingSelector = createSelector([requestSelector], (state) => state.isLoading);
+
+export const filterSelector = createSelector([requestSelector], ({ filter }) => filter);
 
 export default requestSlice;

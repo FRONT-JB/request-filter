@@ -1,0 +1,93 @@
+@use '../utils/variables' as var;
+
+.check-box {
+  position: relative;
+  display: block;
+  min-width: 1.2rem;
+  min-height: 1.2rem;
+  outline: 0;
+  line-height: 1.2rem;
+
+  &.toggle {
+    display: inline-block;
+  }
+  &__input {
+    position: absolute;
+    padding: 0;
+    height: 1.2rem;
+    opacity: 0;
+    vertical-align: top;
+    pointer-events: none;
+  }
+
+  &__label {
+    position: relative;
+    display: inline-block;
+    padding-left: 2.2rem;
+    width: 100%;
+    font-size: 1.2rem;
+    word-break: keep-all;
+    cursor: pointer;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 1.2rem;
+      height: 1.2rem;
+      background-color: var.$white;
+      border: 1px solid var.$grey-base;
+      border-radius: 0.2rem;
+      transform: translateY(-50%);
+    }
+
+    &.toggle {
+      vertical-align: middle;
+      padding-left: 4rem;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 3.8rem;
+        height: 1.6rem;
+        background-color: var.$grey-lighten-1;
+        border: none;
+        border-radius: 1rem;
+        transform: translateY(-50%);
+        transition: background-color 0.4s ease;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -4px;
+        width: 2.3rem;
+        height: 2.3rem;
+        background-color: var.$grey-lighten-2;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 2px 2px 7px -3px var.$grey-darken-1;
+        transform: translateY(-50%);
+        transition: left 0.4s ease;
+      }
+    }
+  }
+
+  &__input:checked ~ &__label::before {
+    background: var.$blue-lighten-1 url('../images/icon_checked.svg') no-repeat center;
+    border-color: var.$blue-lighten-1;
+  }
+
+  &__input.toggle:checked ~ &__label.toggle {
+    &::before {
+      background: var.$blue-lighten-2;
+    }
+
+    &::after {
+      left: 2rem;
+      background-color: var.$blue-lighten-1;
+    }
+  }
+}

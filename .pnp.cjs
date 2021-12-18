@@ -60,6 +60,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@yarnpkg/pnpify", "npm:3.1.1-rc.6"],
             ["axios", "npm:0.24.0"],
             ["babel-loader", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:8.2.3"],
+            ["classnames", "npm:2.3.1"],
             ["clean-webpack-plugin", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:4.0.0"],
             ["cross-env", "npm:7.0.3"],
             ["css-loader", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.5.1"],
@@ -4616,6 +4617,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["classnames", [
+        ["npm:2.3.1", {
+          "packageLocation": "./.yarn/cache/classnames-npm-2.3.1-f2ae0a8d3c-14db8889d5.zip/node_modules/classnames/",
+          "packageDependencies": [
+            ["classnames", "npm:2.3.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["clean-css", [
         ["npm:5.2.2", {
           "packageLocation": "./.yarn/cache/clean-css-npm-5.2.2-ccb3a2a994-1085582082.zip/node_modules/clean-css/",
@@ -6514,6 +6524,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@yarnpkg/pnpify", "npm:3.1.1-rc.6"],
             ["axios", "npm:0.24.0"],
             ["babel-loader", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:8.2.3"],
+            ["classnames", "npm:2.3.1"],
             ["clean-webpack-plugin", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:4.0.0"],
             ["cross-env", "npm:7.0.3"],
             ["css-loader", "virtual:5ea55ea1176b3f163462a3792c2174bb21fb24a6418466d3ecbace9d657c2a2f93e514aef983589f99b3c91c1444c7a48c6372914818b073c0204efea051c742#npm:6.5.1"],

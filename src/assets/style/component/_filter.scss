@@ -1,0 +1,19 @@
+@use '../utils/mixins' as mixin;
+
+.filter-box {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__select > div[class^='select']:not(:nth-of-type(1)) {
+    margin-left: 1rem;
+  }
+  .btn-reset {
+    margin-left: 1.5rem;
+  }
+
+  @include mixin.Mobile {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

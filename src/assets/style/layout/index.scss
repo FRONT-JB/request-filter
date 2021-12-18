@@ -1,0 +1,34 @@
+@use '../utils/variables' as var;
+@use '../utils/mixins' as mixin;
+
+.content {
+  padding: 5.6rem 2rem;
+  margin: 0 auto;
+  max-width: 100rem;
+  min-height: calc(100vh - 8.4rem);
+  &__sub-tit,
+  &__sub-desc {
+    color: var.$grey-darken-1;
+  }
+  &__sub-tit {
+    line-height: 1;
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+  &__sub-desc {
+    margin-top: 1.2rem;
+    font-size: 1.8rem;
+  }
+
+  @include mixin.Mobile {
+    padding-top: 3rem;
+    min-height: calc(100vh - 5.6rem);
+    &__sub-tit {
+      font-size: 1.8rem;
+    }
+    &__sub-desc {
+      margin-top: 1rem;
+      font-size: 1.6rem;
+    }
+  }
+}

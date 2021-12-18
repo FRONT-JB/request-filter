@@ -12,7 +12,6 @@ export const FILTER_METHOD = {
 export type FilterMethodTypes = types<typeof FILTER_METHOD>;
 
 export interface FilterMethod {
-  type: string;
   id: string;
   label: FilterMethodTypes;
 }
@@ -33,10 +32,11 @@ export const FILTER_MATERIAL = {
 export type FilterMaterialTypes = types<typeof FILTER_MATERIAL>;
 
 export interface FilterMaterial {
-  type: string;
   id: string;
   label: FilterMaterialTypes;
 }
+
+export type FilterTypes = FilterMethodTypes & FilterMaterialTypes;
 
 /**
  * @description

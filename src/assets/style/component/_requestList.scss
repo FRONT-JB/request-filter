@@ -1,0 +1,129 @@
+@use '../utils/variables' as var;
+@use '../utils/mixins' as mixin;
+
+.request {
+  margin-top: 40px;
+  width: 100%;
+  height: 100%;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+
+    .btn-set {
+      margin-top: 3.5rem;
+    }
+  }
+  &__notfound {
+    border: 1px solid var.$grey-lighten-2;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 32.3%;
+    min-height: 37rem;
+    padding: 3rem 1.7rem;
+    border: 1px solid var.$grey-lighten-2;
+    border-radius: 0.5rem;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var.$blue-lighten-1;
+    }
+
+    &:not(:nth-child(3n + 1)) {
+      margin-left: 1.5%;
+    }
+
+    &:nth-of-type(n + 4) {
+      margin-top: 1.5%;
+    }
+
+    &-header {
+      padding-bottom: 1.8rem;
+      border-bottom: 2px solid var.$grey-lighten-2;
+
+      .title,
+      .client {
+        color: var.$grey-darken-1;
+      }
+
+      .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: top;
+        font-size: 1.6rem;
+        line-height: 2.6rem;
+      }
+
+      .client {
+        margin-top: 1.2rem;
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+
+      .due-date {
+        margin-top: 3rem;
+        color: var.$grey-base;
+        font-size: 1.3rem;
+      }
+    }
+
+    &-body {
+      margin-top: 3.5rem;
+      flex: 1;
+    }
+
+    &-info {
+      display: flex;
+      align-items: flex-start;
+      cursor: default;
+
+      .title span,
+      .desc b {
+        display: block;
+        color: var.$grey-darken-1;
+        font-size: 1.4rem;
+      }
+
+      .title {
+        min-width: 10.5rem;
+      }
+
+      .desc {
+        flex: 1;
+      }
+    }
+  }
+
+  @include mixin.Tablet {
+    &__item {
+      flex: 0 0 49%;
+
+      &:not(:nth-child(3n + 1)) {
+        margin-left: 0;
+      }
+
+      &:nth-of-type(even) {
+        margin-left: 2%;
+      }
+
+      &:nth-of-type(n + 3) {
+        margin-top: 2%;
+      }
+    }
+  }
+
+  @include mixin.Mobile {
+    &__item {
+      flex: 0 0 100%;
+      &:nth-of-type(even) {
+        margin-left: 0;
+      }
+      &:nth-of-type(n + 2) {
+        margin-top: 1.6rem;
+      }
+    }
+  }
+}
