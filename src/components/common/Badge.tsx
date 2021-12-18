@@ -1,5 +1,4 @@
 import { REQUEST_STATUS } from '~/types/request';
-import cn from 'classnames';
 
 interface Props {
   color?: string;
