@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { materialList, methodList } from '~/constants/checkbox';
 import {
   filterSelector,
-  requestSelector,
   resetFilter,
+  selectedFilterSelector,
   setFilter,
   toggleOnGoing,
 } from '~/store/slices/request';
 import { FilterTypes } from '~/types/request';
-import { handleCheckbox } from '~/utils';
+import { handleFilterList } from '~/utils';
 import { SelectBox, Toggle } from '../common';
 
 const RequestFilter = () => {
   const dispatch = useDispatch();
   const filterList = useSelector(filterSelector);
-  const { isOnGoing } = useSelector(requestSelector);
+  const { selectedMethod, selectedMaterials, isOnGoing } = useSelector(selectedFilterSelector);
 
   const handleResetFilter = () => {
     dispatch(resetFilter());
@@ -30,15 +30,27 @@ const RequestFilter = () => {
       name: FilterTypes;
       checked: boolean;
     };
-    const newFilter = handleCheckbox(filterList, label, isChecked);
+    const newFilter = handleFilterList(filterList, label, isChecked);
     dispatch(setFilter(newFilter));
   };
 
   return (
     <div className='filter-box'>
       <div className='filter-box__select'>
-        <SelectBox title='가공방식' selectOptions={methodList} onChange={handleFilter} />
-        <SelectBox title='재료' selectOptions={materialList} onChange={handleFilter} />
+        <SelectBox
+          title='가공방식'
+          selectOptions={methodList}
+          selectedValue={selectedMethod}
+          filterList={filterList}
+          onChange={handleFilter}
+        />
+        <SelectBox
+          title='재료'
+          selectOptions={materialList}
+          selectedValue={selectedMaterials}
+          filterList={filterList}
+          onChange={handleFilter}
+        />
         <button className='btn-reset' onClick={handleResetFilter}>
           필터링 리셋
         </button>

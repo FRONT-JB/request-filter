@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { RequestItem as RequestItemTypes } from '~/types/request';
 import { handleFindBadgeColor } from '~/utils';
 import Badge from '../common/Badge';
@@ -59,4 +60,4 @@ const RequestItem = ({ request }: Props) => {
   );
 };
 
-export default RequestItem;
+export default memo(RequestItem);

@@ -1,7 +1,7 @@
-import { handleCheckbox } from './../../utils/index';
 import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { FilterTypes, RequestItem, REQUEST_STATUS } from '~/types/request';
+import { handleSelectedFilter } from '~/utils';
 import { RootState } from '../reducer';
 
 const REQUEST_SLICE = 'REQUEST' as const;
@@ -44,10 +44,19 @@ const requestSlice = createSlice({
       state.isOnGoing = !state.isOnGoing;
     },
     setFilter: (state, { payload }: PayloadAction<FilterTypes[]>) => {
+      const isFilterActive = !!payload.length;
       state.filter = payload;
+      state.filteredRequest = isFilterActive
+        ? state.request.filter((request) => {
+            return payload.some(
+              (label) => request.method.includes(label) || request.material.includes(label),
+            );
+          })
+        : state.request;
     },
     resetFilter: (state) => {
       state.filter = [];
+      state.isOnGoing = false;
     },
   },
 });
@@ -62,7 +71,18 @@ export const {
 } = requestSlice.actions;
 
 export const requestSelector = (state: RootState) => state.request;
-
+export const filterSelector = createSelector([requestSelector], ({ filter }) => filter);
+export const selectedFilterSelector = createSelector(
+  [requestSelector],
+  ({ filter: filterList, isOnGoing }) => {
+    return {
+      selectedMethod: filterList.filter((label) => handleSelectedFilter(label, 'method')).length,
+      selectedMaterials: filterList.filter((label) => handleSelectedFilter(label, 'materials'))
+        .length,
+      isOnGoing,
+    };
+  },
+);
 export const requestListSelector = createSelector(
   [requestSelector],
   ({ isOnGoing, filteredRequest }) => {
@@ -71,9 +91,4 @@ export const requestListSelector = createSelector(
       : filteredRequest;
   },
 );
-
-export const reqeustLoadingSelector = createSelector([requestSelector], (state) => state.isLoading);
-
-export const filterSelector = createSelector([requestSelector], ({ filter }) => filter);
-
 export default requestSlice;
