@@ -15,7 +15,17 @@
   }
 
   &__notfound {
+    padding: 5rem 1.5rem;
+    width: 100%;
     border: 1px solid var.$grey-lighten-2;
+    border-radius: 0.5rem;
+    color: var.$grey-lighten-1;
+    font-weight: 400;
+    text-align: center;
+    cursor: default;
+    &::selection {
+      background: transparent;
+    }
   }
 
   &__item {
