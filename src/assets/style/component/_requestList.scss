@@ -9,18 +9,21 @@
   &__list {
     display: flex;
     flex-wrap: wrap;
-
     .btn-set {
       margin-top: 3.5rem;
     }
   }
+
   &__notfound {
     border: 1px solid var.$grey-lighten-2;
   }
+
   &__item {
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     flex: 0 0 32.3%;
+    position: relative;
     min-height: 37rem;
     padding: 3rem 1.7rem;
     border: 1px solid var.$grey-lighten-2;
@@ -43,6 +46,12 @@
     &-header {
       padding-bottom: 1.8rem;
       border-bottom: 2px solid var.$grey-lighten-2;
+
+      span.badge {
+        position: absolute;
+        right: 1.7rem;
+        top: 3rem;
+      }
 
       .title,
       .client {

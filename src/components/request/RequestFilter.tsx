@@ -1,25 +1,37 @@
 import { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { materialList, methodList } from '~/constants/checkbox';
-import { filterSelector, resetFilter, setFilter } from '~/store/slices/request';
+import {
+  filterSelector,
+  requestSelector,
+  resetFilter,
+  setFilter,
+  toggleOnGoing,
+} from '~/store/slices/request';
+import { FilterTypes } from '~/types/request';
 import { handleCheckbox } from '~/utils';
-import { SelectBox } from '../common';
+import { SelectBox, Toggle } from '../common';
 
 const RequestFilter = () => {
   const dispatch = useDispatch();
   const filterList = useSelector(filterSelector);
+  const { isOnGoing } = useSelector(requestSelector);
 
-  const onResetFilter = () => {
+  const handleResetFilter = () => {
     dispatch(resetFilter());
   };
 
-  const onGoingToggle = () => {
-    dispatch(onGoingToggle());
+  const handleGoingToggle = () => {
+    dispatch(toggleOnGoing());
   };
 
   const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name: label, checked: isChecked } = e.target;
-    console.log(label, isChecked);
+    const { name: label, checked: isChecked } = e.target as {
+      name: FilterTypes;
+      checked: boolean;
+    };
+    const newFilter = handleCheckbox(filterList, label, isChecked);
+    dispatch(setFilter(newFilter));
   };
 
   return (
@@ -27,12 +39,12 @@ const RequestFilter = () => {
       <div className='filter-box__select'>
         <SelectBox title='가공방식' selectOptions={methodList} onChange={handleFilter} />
         <SelectBox title='재료' selectOptions={materialList} onChange={handleFilter} />
-        <button className='btn-reset' onClick={onResetFilter}>
+        <button className='btn-reset' onClick={handleResetFilter}>
           필터링 리셋
         </button>
       </div>
       <div className='filter-box__request-state'>
-        {/* <Toggle title='상담 중인 요청만 보기' checked={onGoingToggle} onChange={handleFilter} /> */}
+        <Toggle title='상담 중인 요청만 보기' checked={isOnGoing} onChange={handleGoingToggle} />
       </div>
     </div>
   );

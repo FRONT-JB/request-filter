@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { ContentHeader } from '~/components/header';
-import RequestFilter from '~/components/request/RequestFilter';
-import RequestList from '~/components/request/RequestList';
+import { RequestFilter, RequestList } from '~/components/request';
 import { getRequest } from '~/store/slices/request';
 
 const RequestContainer = () => {

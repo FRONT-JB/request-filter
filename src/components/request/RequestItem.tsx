@@ -3,11 +3,11 @@ import { handleFindBadgeColor } from '~/utils';
 import Badge from '../common/Badge';
 
 interface Props {
-  item: RequestItemTypes;
+  request: RequestItemTypes;
 }
 
-const RequestItem = ({ item }: Props) => {
-  const { id, title, client, due, count = 0, amount, method, material, status } = item;
+const RequestItem = ({ request }: Props) => {
+  const { id, title, client, due, count = 0, amount, method, material, status } = request;
 
   return (
     <li className='request__item'>
