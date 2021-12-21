@@ -72,8 +72,9 @@
         display: flex;
         justify-content: space-between;
         align-items: top;
-        font-size: 1.6rem;
+        max-width: 80%;
         line-height: 2.6rem;
+        font-size: 1.6rem;
       }
 
       .client {
