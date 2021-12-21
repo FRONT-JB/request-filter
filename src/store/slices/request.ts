@@ -56,6 +56,7 @@ const requestSlice = createSlice({
     },
     resetFilter: (state) => {
       state.filter = [];
+      state.filteredRequest = state.request;
       state.isOnGoing = false;
     },
   },

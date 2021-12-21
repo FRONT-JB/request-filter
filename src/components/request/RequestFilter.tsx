@@ -51,9 +51,11 @@ const RequestFilter = () => {
           filterList={filterList}
           onChange={handleFilter}
         />
-        <button className='btn-reset' onClick={handleResetFilter}>
-          필터링 리셋
-        </button>
+        {(selectedMethod > 0 || selectedMaterials > 0 || isOnGoing) && (
+          <button className='btn-reset' onClick={handleResetFilter}>
+            필터링 리셋
+          </button>
+        )}
       </div>
       <div className='filter-box__request-state'>
         <Toggle title='상담 중인 요청만 보기' checked={isOnGoing} onChange={handleGoingToggle} />
